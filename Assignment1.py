@@ -86,3 +86,14 @@ while userinput:
 
     elif (userinput == "q" or input == "Q"):
         sys.exit()
+
+
+class Scrambler(object):
+
+    def __init__(self):
+        self.sentences = []
+    
+    ''''scramble_it():''' 
+
+
+
