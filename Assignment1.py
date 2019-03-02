@@ -1,3 +1,6 @@
+import sys
+
+
 ''' function for pascal triangle'''
 def displayPascalTriangle(size):
     ''' this first loop sets up the number of rows'''
@@ -17,18 +20,22 @@ def displayPascalTriangle(size):
 ''' Factorial function '''
 def displayFactorial (number):
    ''' if number is one then just return 1 '''
-   if number < 1: 
+   if number == 1: 
        return 1    
    else:
         return number * displayFactorial (number - 1)
 
-def  displayEulerNumber (terms):
-    totalsum = 1 
 
+def displayEulerNumber (terms):
+    totalsum = 1 
     for i in range (1 , terms + 1):
-        totalsum = totalsum + (1 / displayFactorial(terms))
+        totalsum = totalsum + (1 / displayFactorial(i))
 
     print ("The sum of series is", totalsum)
+
+
+def displaySinValue (numberInRadians):
+    pass
 
 '''
 Write a python script that repeatedly prompts the user to select one of the
@@ -64,18 +71,18 @@ while userinput:
         displayPascalTriangle(num)
         
     elif (userinput == "b" or input == "B"):
-        num2 = int ( input ("Enter the number you want to find the factorial for:"))
-        displayFactorial(num2)
+        num = int ( input ("Enter the number you want to find the factorial for:"))
+        displayFactorial(num)
 
     elif (userinput == "c" or input == "C"):
-        num3 =int(input("Enter the number of terms: "))
-        displayEulerNumber(num3)
+        num =int(input("Enter the number of terms: "))
+        displayEulerNumber(num)
     
     elif (userinput == "d" or input == "D"):
-        print ("hello")
+         num =int(input("Enter the number of in terms of radians : "))
 
     elif (userinput == "m" or input == "M"):
-        print ("hello")
+        continue
 
     elif (userinput == "q" or input == "Q"):
-        print ("hello")
+        sys.exit()
