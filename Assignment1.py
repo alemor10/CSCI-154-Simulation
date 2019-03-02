@@ -97,3 +97,18 @@ class Scrambler(object):
 
 
 
+''' #3  Understand and comment the following code snippet and write a single line of
+code that enables the class Hamburger to store as instance arguments the meat choice
+and as many extras as given at the instantiation call.'''
+
+class Hamburger:
+    def __init__(self,**kwargs):
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
+        ''' the previous  loop goes through the **kwarg arguments and uses the built in function with the value in **kwargs '''
+
+    def __str__(self, sep = ''):
+        return (', '.join(list(self.__dict__.values())))
+
+burger1 = Hamburger(meat="chicken", extra1="cheese", extra2="ketchup")
+print(burger1)
