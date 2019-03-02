@@ -14,13 +14,21 @@ def displayPascalTriangle(size):
         ''' after printing each row we want to go to a new line'''
         print()
 
-
+''' Factorial function '''
 def displayFactorial (number):
-    pass
+   ''' if number is one then just return 1 '''
+   if number < 1: 
+       return 1    
+   else:
+        return number * displayFactorial (number - 1)
 
+def  displayEulerNumber (terms):
+    totalsum = 1 
 
+    for i in range (1 , terms + 1):
+        totalsum = totalsum + (1 / displayFactorial(terms))
 
-
+    print ("The sum of series is", totalsum)
 
 '''
 Write a python script that repeatedly prompts the user to select one of the
@@ -56,10 +64,12 @@ while userinput:
         displayPascalTriangle(num)
         
     elif (userinput == "b" or input == "B"):
-        print ("hello")
+        num2 = int ( input ("Enter the number you want to find the factorial for:"))
+        displayFactorial(num2)
 
     elif (userinput == "c" or input == "C"):
-        print ("hello") 
+        num3 =int(input("Enter the number of terms: "))
+        displayEulerNumber(num3)
     
     elif (userinput == "d" or input == "D"):
         print ("hello")
