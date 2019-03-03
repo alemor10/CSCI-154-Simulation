@@ -1,41 +1,69 @@
 import sys
+import itertools
+import math
 
+def process_choice(my_func, my_str):
+    '''Handles input for Pascals triangle and Factorial '''
+    user_input = ''
+    num = ''
+    while user_input != 'q':
+        try:
+            user_input = input("Enter number (q to quit): ")
+            if user_input == 'q':
+                break
+            try:
+                num = float(user_input)
+            except ValueError:
+                print("Enter a number!")
+                continue
+            if num < 0 or None:
+                raise ValueError("Invalid number!")
+            print (my_str.format(num, my_func(num)))
+        except ValueError as excpt:
+            print (excpt)
 
 ''' function for pascal triangle'''
-def displayPascalTriangle(size):
-    ''' this first loop sets up the number of rows'''
-    for i in range (1, size + 1 ):
-        ''' this loop prints out the spaces not in the triangle '''
-        for j in range( 1 , num - i + 1 ):
-            print (end=" ")
-        ''' this loop prints out the left side of the triangle ''' 
-        for j in range (i , 0 , - 1):
-            print (j , end = "")
-        ''' this loop prints out the right side of the triangle '''
-        for j in range (2, i + 1):
-            print (j , end ="")
-        ''' after printing each row we want to go to a new line'''
-        print()
+def pascal_triangle(size):
+    size = int(size)
+    row = [1] #first row
+    k = [0] 
+    # loop through, _ because we dont need the value
+    for _ in range(max(size,0)):
+        print(' '.join(str(x) for x in row)) # print items in list
+        row=[l+r for l,r in zip(row+k,k+row)] #get next row
+    return size>=1
 
 ''' Factorial function '''
-def displayFactorial (number):
+def factorial (number):
    ''' if number is one then just return 1 '''
-   if number == 1: 
+   number = int(number)
+   if number == 0: 
        return 1    
    else:
-        return number * displayFactorial (number - 1)
+        return number * factorial (number - 1)
 
 
-def displayEulerNumber (terms):
+def euler_number (terms):
+    terms = int(terms)
     totalsum = 1 
     for i in range (1 , terms + 1):
-        totalsum = totalsum + (1 / displayFactorial(i))
+        totalsum = totalsum + (1 / factorial(i))
+    return totalsum
 
-    print ("The sum of series is", totalsum)
 
-
-def displaySinValue (numberInRadians):
-    pass
+def sin_value(rad):
+    total = 0
+    prev = 0
+    for i in itertools.count(): # "infinite" loop
+        total += pow(-1, i) * (rad**(2*i+1))/factorial(2*i+1)
+        
+        # break out of infinite loop
+        # if within margin
+        if (abs(prev-total) < 10e-8):
+            break 
+        else:
+            prev = total
+    return total
 
 '''
 Write a python script that repeatedly prompts the user to select one of the
@@ -67,19 +95,16 @@ while userinput:
     userinput=input("What would you like to do? ")
 
     if (userinput == "a" or input == "A"):
-        num = int ( input ("Enter the height of the Pascal triangle:"))
-        displayPascalTriangle(num)
+        process_choice(pascal_triangle, "Pascal triangle of height {}")
         
     elif (userinput == "b" or input == "B"):
-        num = int ( input ("Enter the number you want to find the factorial for:"))
-        displayFactorial(num)
+        process_choice(factorial, "Factorial of {} is {}")
 
     elif (userinput == "c" or input == "C"):
-        num =int(input("Enter the number of terms: "))
-        displayEulerNumber(num)
+        process_choice(euler_number, "The sum of {} term series is {}")
     
     elif (userinput == "d" or input == "D"):
-         num =int(input("Enter the number of in terms of radians : "))
+        process_choice(sin_value, "The sin of {} is {:.3f}")
 
     elif (userinput == "m" or input == "M"):
         continue
