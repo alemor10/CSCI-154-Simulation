@@ -20,5 +20,3 @@ class Scrambler():
             print()
 temp = Scrambler()
 temp.scramble_it()
-
-    

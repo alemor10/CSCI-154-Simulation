@@ -2,6 +2,8 @@ import sys
 import itertools
 import math
 
+
+#main function that handles choices
 def process_choice(my_func, my_str):
     '''Handles input for Pascals triangle and Factorial '''
     user_input = ''
@@ -37,16 +39,20 @@ def pascal_triangle(size):
 def factorial (number):
    ''' if number is one then just return 1 '''
    number = int(number)
+   #base case
    if number == 0: 
        return 1    
    else:
+        #recursive solution
         return number * factorial (number - 1)
 
 
 def euler_number (terms):
     terms = int(terms)
+    #initalize with 1
     totalsum = 1 
     for i in range (1 , terms + 1):
+        #calculating euler's number with given terms
         totalsum = totalsum + (1 / factorial(i))
     return totalsum
 
@@ -93,7 +99,7 @@ while userinput:
     """)
 
     userinput=input("What would you like to do? ")
-
+    # process choices 
     if (userinput == "a" or input == "A"):
         process_choice(pascal_triangle, "Pascal triangle of height {}")
         
@@ -124,8 +130,8 @@ class Hamburger:
     def __init__(self,**kwargs):
         for key in kwargs:
             setattr(self, key, kwargs[key])
-        ''' the previous  loop goes through the **kwarg arguments and uses the built in function with the value in **kwargs '''
-
+      #   the previous  loop goes through the **kwarg arguments and uses the built in function with the value in **kwargs 
+  # print the object 
     def __str__(self, sep = ''):
         return (', '.join(list(self.__dict__.values())))
 
