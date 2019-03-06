@@ -3,7 +3,16 @@ import itertools
 import math
 
 def process_choice(my_func, my_str):
-    '''Handles input for Pascals triangle and Factorial '''
+    '''
+    Handles input for Pascals triangle and Factorial
+
+    Parameters
+    ----------
+    my_func : function
+        pass a function to be executed
+    my_str : str
+        pass a string to be formatted
+     '''
     user_input = ''
     num = ''
     while user_input != 'q':
@@ -33,17 +42,40 @@ def pascal_triangle(size):
         row=[l+r for l,r in zip(row+k,k+row)] #get next row
     return size>=1
 
-''' Factorial function '''
+
 def factorial (number):
-   ''' if number is one then just return 1 '''
-   number = int(number)
-   if number == 0: 
-       return 1    
-   else:
+    '''
+    Takes a number and calculates the factorial using recursion.
+
+    Parameters
+    ----------
+    number: int
+        Non-negative number
+    
+    Returns
+    -------
+    int
+    '''
+    number = int(number)
+    if number == 0: 
+        return 1    
+    else:
         return number * factorial (number - 1)
 
 
 def euler_number (terms):
+    '''
+    Takes a number and calculates the euler number.
+    
+    Parameters
+    ----------
+    terms: int
+        The number of terms
+    
+    Returns
+    -------
+    float
+    '''
     terms = int(terms)
     totalsum = 1 
     for i in range (1 , terms + 1):
@@ -52,6 +84,18 @@ def euler_number (terms):
 
 
 def sin_value(rad):
+    '''
+    Takes a number and calculates the sin.
+    
+    Parameters
+    ----------
+    rad: float
+        A float  in terms of radians
+    
+    Returns
+    -------
+    float
+    '''
     total = 0
     prev = 0
     for i in itertools.count(): # "infinite" loop
@@ -113,7 +157,7 @@ while userinput:
         sys.exit()
 
 
-class Scrambler(object):
+class Scrambler():
 
     def __init__(self):
         self.sentences = []
